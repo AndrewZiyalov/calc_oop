@@ -54,6 +54,52 @@ public class CalcTests {
         assertEquals("1 + 1 - 4 * 6 / 3 = -4",-4,calculator.calculate("1 + 1 - 4 * 6 / 3 "));
     }
 
+    @Test(expected = ArithmeticException.class)
+    public void incorrectDivOperation(){
+        try {
+            final ParserOperation parserOperation = new ParserOperation();
+            final Calculator calculator = new Calculator(parserOperation);
+            calculator.calculate("1/0");
+        }
+        catch (ArithmeticException re)
+        {
+            String message = "Деление на ноль";
+            assertEquals(message, re.getMessage());
+            throw re;
+        }
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void incorrectExpression1(){
+        try {
+            final ParserOperation parserOperation = new ParserOperation();
+            final Calculator calculator = new Calculator(parserOperation);
+            calculator.calculate("a + b");
+        }
+        catch(RuntimeException re)
+        {
+            String message = "Недопустимые символы в выражении";
+            assertEquals(message, re.getMessage());
+            throw re;
+        }
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void incorrectExpression2(){
+        try
+        {
+            final ParserOperation parserOperation = new ParserOperation();
+            final Calculator calculator = new Calculator(parserOperation);
+            calculator.calculate("1 +- 2");
+        }
+        catch(RuntimeException re)
+        {
+            String message = "Неверное выражение";
+            assertEquals(message, re.getMessage());
+            throw re;
+        }
+    }
+
 
 
 }

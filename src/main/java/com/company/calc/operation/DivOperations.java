@@ -23,8 +23,7 @@ public class DivOperations extends Operations {
                 } else return a.intValue() / b.intValue();
             }
         } catch (ArithmeticException e) {
-            System.err.println("Деление на ноль");
-            return null;
+            throw new ArithmeticException("Деление на ноль");
         }
     }
 
