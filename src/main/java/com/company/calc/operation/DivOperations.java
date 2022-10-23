@@ -4,7 +4,7 @@ import java.text.DecimalFormat;
 
 public class DivOperations extends Operations {
 
-    public DivOperations(Operation a, Number b) {
+    public DivOperations(Operation a, Number b) throws ArithmeticException {
         super(a, new ConstOperation(b));
     }
 

@@ -15,7 +15,15 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Введите выражение типа А+B, A*B, A/B, A-B:");
         String ex = scanner.nextLine();
-        System.out.println(calculator.calculate(ex));
+        try {
+            System.out.println(calculator.calculate(ex));
+        } catch (ArithmeticException e) {
+            System.err.println("Деление на ноль");
+            e.printStackTrace();
+        } catch (ClassCastException e) {
+            System.err.println("Неверное выражение");
+            e.printStackTrace();
+        }
 
     }
 }

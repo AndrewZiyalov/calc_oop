@@ -19,7 +19,7 @@ public class ParserObjects {
             Matcher matcherSign = patternSign.matcher(m);
             Matcher matcherErr = patternErr.matcher(m);
             if (matcherErr.find()){
-                throw new RuntimeException("Недопустимые символы в выражении");
+                throw new ClassCastException("Недопустимые символы в выражении");
             } else if (matcherNum.find()) {
                 objects.add(convertToNumber(matcherNum.group().replace(',','.')));
             } else if (matcherSign.find()) {

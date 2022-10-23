@@ -5,7 +5,7 @@ import com.company.calc.operation.*;
 import java.util.ArrayList;
 
 public class ParserOperation {
-    public Operation parse(String ex) {
+    public Operation parse(String ex) throws ClassCastException {
         //все символы в объект с распределением по типам чтоб в зависимости от типа числа был ответ типом int или double
         ArrayList<Object> objects = new ParserObjects().parse(ex);
         //результат инициалзируем первым числом. Минимум два числа и одна операция
@@ -22,7 +22,8 @@ public class ParserOperation {
                 } else if (objects.get(i).equals("/")) {
                     result = new DivOperations(result, (Number) secondNum);
                 }
-            } else { throw new RuntimeException("Неверное выражение");}
+            }
+            else { throw new ClassCastException("Неверное выражение");}
         }
         return result;
     }
